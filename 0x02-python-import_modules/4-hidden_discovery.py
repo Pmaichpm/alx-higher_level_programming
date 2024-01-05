@@ -4,7 +4,6 @@ if __name__ == "__main__":
     """Print all the names defined by the compiled module hidden_4."""
     import hidden_4
 
-    title = dir(hidden_4)
-    for title in names:
+    for title = dir(hidden_4)
         if title[:2] != "__":
-            print(title)
+            print("{:title}".format(title))
