@@ -4,11 +4,11 @@ def no_c(my_string):
 
     x = 0
 
-    fresh_string = my_string[:]
+    new_string = my_string[:]
 
     for i in range(l):
         if (my_string[i] == 'c' or my_string[i] == 'C'):
-            fresh_string = fresh_string[:(i - x)] + my_string[(i + 1):]
+            new_string = new_string[:(i - x)] + my_string[(i + 1):]
             x += 1
 
-    return (fresh_string)
+    return (new_string)
