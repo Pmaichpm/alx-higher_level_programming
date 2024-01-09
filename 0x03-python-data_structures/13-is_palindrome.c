@@ -1,43 +1,51 @@
 #include "lists.h"
 #include <stdio.h>
 
+/**
+ * is_palindrome - checks for a palindrome in linked list
+ * @head: double pointer to linked list
+ *
+ * Return: 1 if yes, 0 if not
+ */
+
 int is_palindrome(listint_t **head)
 {
-  listint_t *hd, *txt, *bk, *ext;
-  listint_t *x = NULL, *point, *ix, *ixx;
+	listint_t *hd, *txt, *bk, *ext;
+	listint_t *x = NULL, *point, *ix, *ixx;
 
-  if (!head || !*head)
-    return (1);
+	if (!head || !*head)
+	return (1);
 
-  hd = *head;
-  if (hd->next != NULL)
-    {
-      for (bk = hd, txt = hd; bk != NULL && bk->next != NULL;
-	   ext = txt, txt = txt->next)
-	bk = bk->next->next;
-      if (bk != NULL)
+	hd = *head;
+	if (hd->next != NULL)
 	{
-	  x = txt;
-	  txt = txt->next;
-	}
-      ext->next = NULL;
-      point = txt;
-      ix = reverse_listint(&point);
-      for (ixx = *head; ixx; ix = ix->next, ixx = ixx->next)
+		for (bk = hd, txt = hd; bk != NULL && bk->next != NULL;
+			ext = txt, txt = txt->next)
+			bk = bk->next->next;
+
+	if (bk != NULL)
 	{
-	  if (ixx->n != ix->n)
-	    return (0);
+		x = txt;
+		txt = txt->next;
 	}
-      if (x == NULL)
+	ext->next = NULL;
+	point = txt;
+	ix = reverse_listint(&point);
+	for (ixx = *head; ixx; ix = ix->next, ixx = ixx->next)
+	{
+	if (ixx->n != ix->n)
+		return (0);
+	}
+	if (x == NULL)
 	ext->next = point;
-      else
+	else
 	{
-	  ext->next = x;
-	  x->next = point;
+	ext->next = x;
+	x->next = point;
 	}
-    }
+	}
 
-  return (1);
+	return (1);
 }
 
 /**
@@ -46,25 +54,25 @@ int is_palindrome(listint_t **head)
  *
  * Return: The new head of the reversed list
  */
+
 listint_t *reverse_listint(listint_t **head)
 {
-  listint_t *follow = NULL, *ex = NULL;
+	listint_t *follow = NULL, *ex = NULL;
 
-  if (!head || !*head)
-    return (NULL);
+	if (!head || !*head)
+	return (NULL);
 
-  while ((*head)->follow)
-    {
-      follow = (*head)->follow;
+	while ((*head)->follow)
+	{
+	follow = (*head)->follow;
 
-      (*head)->follow = ex;
+	(*head)->follow = ex;
 
-      ex = *head;
+	ex = *head;
+	*head = follow;
+	}
 
-      *head = follow;
-    }
+	(*head)->follow = ex;
 
-  (*head)->follow = ex;
-
-  return (*head);
+	return (*head);
 }
