@@ -17,21 +17,21 @@ int is_palindrome(listint_t **head)
 	return (1);
 
 	hd = *head;
-	if (hd->next != NULL)
+	if (hd->follow != NULL)
 	{
-		for (bk = hd, txt = hd; bk != NULL && bk->next != NULL;
-			ext = txt, txt = txt->next)
-			bk = bk->next->next;
+		for (bk = hd, txt = hd; bk != NULL && bk->follow != NULL;
+			ext = txt, txt = txt->follow)
+			bk = bk->follow->follow;
 
 	if (bk != NULL)
 	{
 		x = txt;
-		txt = txt->next;
+		txt = txt->follow;
 	}
-	ext->next = NULL;
+	ext->follow = NULL;
 	point = txt;
 	ix = reverse_listint(&point);
-	for (ixx = *head; ixx; ix = ix->next, ixx = ixx->next)
+	for (ixx = *head; ixx; ix = ix->follow, ixx = ixx->follow)
 	{
 	if (ixx->n != ix->n)
 		return (0);
@@ -40,8 +40,8 @@ int is_palindrome(listint_t **head)
 	ext->next = point;
 	else
 	{
-	ext->next = x;
-	x->next = point;
+	ext->follow = x;
+	x->follow = point;
 	}
 	}
 
